@@ -1,5 +1,5 @@
 import { useState } from "react";
-import trash2 from './assets/trash2.png'
+
 import Todo from "./components/Todo";
 import green from "./assets/green.png"
 
@@ -8,7 +8,7 @@ import green from "./assets/green.png"
 function App() {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [done, setDone] = useState(true)
+ 
 
   function handleChange(event) {
     setInputValue(event.target.value);
