@@ -1,14 +1,15 @@
 import { useState } from "react";
-import trash2 from './assets/trash2.png'
+
 import Todo from "./components/Todo";
 import green from "./assets/green.png"
+import edit from "./assets/edit.png"
 
 
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [done, setDone] = useState(true)
+ 
 
   function handleChange(event) {
     setInputValue(event.target.value);
@@ -22,6 +23,11 @@ function App() {
 
   const handleDelete = (index)=>{
     setTodos(todos.filter((todo, todoIndex) => todoIndex !== index))
+  }
+
+  const handleEdit = (index, newDescription) => {
+    const updtedTodos = todos.map((todo, todoIndex)=> todoIndex === index ? newDescription: todo);
+    setTodos(updtedTodos)
   }
 
   
@@ -38,7 +44,6 @@ function App() {
               className="w-[90%] outline-none"
               value={inputValue}
               onChange={handleChange}
-             
             />
             <button
               className="bg-[#01938D] shadow-2xl h-6 w-6 rounded-full flex text-center items-center justify-center text-2xl font-bold text-white"
@@ -51,7 +56,7 @@ function App() {
           {todos.map((todo , index)=> (
             
             <li key={todo} className="">
-                <Todo image={green} description={todo} onDelete={()=>handleDelete(index)}/>
+                <Todo image={green} description={todo} image2={edit} onDelete={()=>handleDelete(index) } onEdit={newDescription=> handleEdit(index,newDescription)}/>
             </li>
           ))}
         </ul>
